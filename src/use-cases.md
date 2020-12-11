@@ -1,4 +1,4 @@
-# Use cases
+# Use Cases
 
 There are many use cases where the C19 protocol could be a good fit. C19 is a general-purpose solution for sharing state in a distributed system.
 In this chapter we show a few simple use-cases to help spark up your imagination of the possibilities.
