@@ -1,0 +1,23 @@
+version: 0.1
+spec:
+  agent:
+    kind: Default
+    port: 3097
+  state:
+    kind: Default
+    ttl: null
+    purge_interval: 60000
+  connection:
+    kind: Default
+    publish_interval: 1000
+    port: 4097
+    r0: 3
+    timeout: 250
+    exploration: 0
+    publish_unchanged: false
+    peer_provider:
+      kind: Static
+      peers:
+        - 192.168.0.2
+        - 192.168.0.3
+        - 192.168.0.4
