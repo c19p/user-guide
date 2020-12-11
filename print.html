@@ -1,0 +1,1441 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The C19 Protocol / User Guide</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="title-page.html">The C19 Protocol</a></li><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="motivation.html">Motivation</a></li><li class="chapter-item expanded "><a href="use-cases.html"><strong aria-hidden="true">1.</strong> Use cases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="use-case-sharing-state.html"><strong aria-hidden="true">1.1.</strong> Sharing state</a></li><li class="chapter-item expanded "><a href="use-case-media-server.html"><strong aria-hidden="true">1.2.</strong> Media Service / Pulling from Origin</a></li><li class="chapter-item expanded "><a href="use-case-user-subscription.html"><strong aria-hidden="true">1.3.</strong> User Subscription Data</a></li><li class="chapter-item expanded "><a href="use-case-standalone-cache.html"><strong aria-hidden="true">1.4.</strong> Standalone Distributed Cache</a></li></ol></li><li class="chapter-item expanded "><a href="ch01-00-getting-started.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dockerhub.html"><strong aria-hidden="true">2.1.</strong> Dockerhub</a></li><li class="chapter-item expanded "><a href="getting-started-configuration.html"><strong aria-hidden="true">2.2.</strong> Configuring the Agent</a></li><li class="chapter-item expanded "><a href="getting-started-deploying-to-kubernetes.html"><strong aria-hidden="true">2.3.</strong> Deploying to Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started-tldr.html"><strong aria-hidden="true">2.3.1.</strong> TL;DR</a></li><li class="chapter-item expanded "><a href="getting-started-step-by-step.html"><strong aria-hidden="true">2.3.2.</strong> Step-by-Step</a></li></ol></li><li class="chapter-item expanded "><a href="getting-started-test-deployment.html"><strong aria-hidden="true">2.4.</strong> Testing the Deployment</a></li><li class="chapter-item expanded "><a href="getting-started-helm-deployment.html"><strong aria-hidden="true">2.5.</strong> Standalone Deployment Using Helm Chart</a></li><li class="chapter-item expanded "><a href="getting-started-non-kubernetes-deployment.html"><strong aria-hidden="true">2.6.</strong> Non-Kubernetes Deployment</a></li><li class="chapter-item expanded "><a href="setting-and-getting-values.html"><strong aria-hidden="true">2.7.</strong> Setting and Getting Values</a></li></ol></li><li class="chapter-item expanded "><a href="deployment-strategies.html"><strong aria-hidden="true">3.</strong> Deployment Strategies</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="deployment-strategy-classic.html"><strong aria-hidden="true">3.1.</strong> Alongside a Service</a></li><li class="chapter-item expanded "><a href="deployment-strategy-standalone.html"><strong aria-hidden="true">3.2.</strong> As a Standalone Cluster</a></li><li class="chapter-item expanded "><a href="deployment-strategy-daemonset.html"><strong aria-hidden="true">3.3.</strong> As a Daemonset</a></li><li class="chapter-item expanded "><a href="deployment-strategy-hybrid.html"><strong aria-hidden="true">3.4.</strong> A Hybrid Deployment</a></li></ol></li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">4.</strong> Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-state-layer.html"><strong aria-hidden="true">4.1.</strong> The State Layer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-default-state.html"><strong aria-hidden="true">4.1.1.</strong> The Default State</a></li><li class="chapter-item expanded "><a href="data-seeders.html"><strong aria-hidden="true">4.1.2.</strong> Data Seeders</a></li></ol></li><li class="chapter-item expanded "><a href="the-agent-layer.html"><strong aria-hidden="true">4.2.</strong> The Agent Layer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-default-agent.html"><strong aria-hidden="true">4.2.1.</strong> The Default Agent</a></li></ol></li><li class="chapter-item expanded "><a href="the-connection-layer.html"><strong aria-hidden="true">4.3.</strong> The Connection Layer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="the-default-connection.html"><strong aria-hidden="true">4.3.1.</strong> The Default Connection</a></li><li class="chapter-item expanded "><a href="peer-providers.html"><strong aria-hidden="true">4.3.2.</strong> Peer Providers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">5.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="seeding-data.html"><strong aria-hidden="true">6.</strong> Seeding Data</a></li><li class="chapter-item expanded "><a href="appendix-i.html"><strong aria-hidden="true">7.</strong> Appendix I</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-i-states.html"><strong aria-hidden="true">7.1.</strong> Available States</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-i-default-state.html"><strong aria-hidden="true">7.1.1.</strong> The Default State</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-i-agents.html"><strong aria-hidden="true">7.2.</strong> Available Agents</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-i-default-agent.html"><strong aria-hidden="true">7.2.1.</strong> The Default Agent</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-i-connections.html"><strong aria-hidden="true">7.3.</strong> Available Connections</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-i-default-connection.html"><strong aria-hidden="true">7.3.1.</strong> The Default Connection</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-i-peer-providers.html"><strong aria-hidden="true">7.4.</strong> Available Peer Providers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-i-static-peer-provider.html"><strong aria-hidden="true">7.4.1.</strong> Static Peer Provider</a></li><li class="chapter-item expanded "><a href="appendix-i-k8s-peer-provider.html"><strong aria-hidden="true">7.4.2.</strong> K8s</a></li></ol></li><li class="chapter-item expanded "><a href="appendix-i-data-seeders.html"><strong aria-hidden="true">7.5.</strong> Available Data Seeders</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="appendix-i-file-data-seeder.html"><strong aria-hidden="true">7.5.1.</strong> File Data Seeder</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">8.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="license.html"><strong aria-hidden="true">9.</strong> License</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The C19 Protocol / User Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#the-c19-protocol" id="the-c19-protocol">The C19 Protocol</a></h1>
+<p><em>by Chen Fisher</em></p>
+<p>The C19 protocol is a variant of the <a href="https://en.wikipedia.org/wiki/Gossip_protocol">Gossip protocol</a>. It allows a group of services to agree on a service-wide state.</p>
+<p>The state is shared across a distributed set of services which in effect means that each service has the data available locally.</p>
+<p><img src="figure-4-sharing-state.png" alt="Sharing state use case" title="Sharing state use case" /></p>
+<p>C19 decouples the process of fetching the data from using it. Consider a service that depends on another service to get subscription data for a user. 
+The dependent service would have to handle fetching the data before being able to use it. But fetching the data is not its main focus and should not be it's main concern.
+By decoupling fetching the data from using it, c19 makes sure the data is available locally to the service. </p>
+<p>If you are running a microservices architecture you will soon, if not already, find yourself having to deal with dependencies across services, handling unavailability, scale, 
+redundancy, etc. Microservices architecture brings with it a lot of complexities that are not at the core of your service. Solutions like Istio exist to help and solve this problem,
+but nothing really beats having the data available locally.</p>
+<p>C19 is a simple, powerful and extensible system. It's low on resources and is easy to reason about.</p>
+<p>Although c19 can be run anywhere and has no dependencies, this user-guide targets Kubernetes as the main platform to run the c19 system. One of the goals of this project is to 
+allow simplicity and have it &quot;just work&quot; and Kubernetes as an orchestrator supports that goal.</p>
+<h1><a class="header" href="#introduction" id="introduction">Introduction</a></h1>
+<p>Welcome to the C19 protocol documentation! In this user guide you will find everything needed to understand and run the C19 protocol.</p>
+<p>At its core, the C19 protocol goal is to share a state across a distributed set of services, handle fetching the data and make it available locally to be consumed by a service.
+Due to its distributed nature and low resource footprint, you gain redundancy, robustness and performance at a low cost.</p>
+<p>Some of the ideas employed by this implementation are:</p>
+<ul>
+<li>Periodic interaction between agents that is decoupled from the change in state. This allows robustness even on high load systems where the state changes at a high rate.</li>
+<li>Bi-directional exchange of states to speed up state propagation across the system.</li>
+<li>Inherent replication of data which gives you redundancy and reliability.</li>
+</ul>
+<p>Most importantly, the system is designed to be extensible and as you will see in the following chapters, you have full control and flexibility to choose the best strategy to 
+match your data and your needs.</p>
+<h1><a class="header" href="#motivation" id="motivation">Motivation</a></h1>
+<p>Running microservices architecture has many benefits, but as you might already found out, it brings a lot of pain you must address. Services don't operate in an isolate world,
+services depend on each other to complete an operation. You have to answer questions like: what if one service becomes unavailable or loaded? What should be the strategy for the
+dependent service? Should it retry? Should it return an error or maybe fallback to a different result?</p>
+<p>You then find yourself employing caching, auto scaling, retry logic, rate limiters and load balancing. Maybe you deploy Istio or Linkerd to deal with many of the issues.
+While these are great solutions, they solve for the general case and don't care about the data. But the data across your system is not equal. Some data can be stale, some of it 
+must be available in real time. Is it worth-while loading your system for data that doesn't change much often? In fact, if you look closely at your data across your system,
+you might find out that some of it, if not most of it, can be consumed in a stale manner.</p>
+<p>C19 doesn't come to replace the great solutions mentioned above, but it offers a different solution that would ease up the load on your system, would increase its availability,
+and would do so in a simplified way. </p>
+<h2><a class="header" href="#failure-rate" id="failure-rate">Failure Rate</a></h2>
+<p><img src="figure-1-service-sla.png" alt="Service SLA" title="Service SLA" /></p>
+<h5><a class="header" href="#figure-10---service-sla" id="figure-10---service-sla">Figure 1.0 - Service SLA</a></h5>
+<p>You may feel content that you have 99% service SLA. But looking at a typical topology like depicted in figure 1.0 above, you
+can see that there are usually more services involved in a single client request. If you count down the SLA for each one of the services, 
+you can quickly see that the total service SLA drops down to 97%.</p>
+<p>If you could bring the data to be available locally for any of the services above, you can immediately bring up your SLA.</p>
+<h2><a class="header" href="#load" id="load">Load</a></h2>
+<p>While most services can be horizontally scaled, some cannot. If you load the DB with a slow running query, you will immediately bring down the whole chain 
+of services. If you handle your rate limits and circuit breakers well then you will end up with a degraded service at the best case scenario.</p>
+<p>Even for other services that can be horizontally scaled, it doesn't come for free. You pay for resources.</p>
+<h2><a class="header" href="#single-point-of-failure" id="single-point-of-failure">Single Point of Failure</a></h2>
+<p>When talking about data, there is usually a single source of truth. Probably a database. Even if you scale your API services up to support the 
+load on your system, you still have to get the data from your source of truth - the DB.</p>
+<h2><a class="header" href="#all-data-is-not-equal" id="all-data-is-not-equal">All data is NOT equal</a></h2>
+<p>Your data is not one thing. Your data differs in different ways across your system. Some of your data must be available in real-time while other data can 
+be consumed while slightly stale. If this is the case, then why loading your system with redundant requests when the data can be available locally.</p>
+<h2><a class="header" href="#one-solution-to-rule-them-all" id="one-solution-to-rule-them-all">One Solution to Rule Them All!</a></h2>
+<p>Of course all of the above can be solved in different ways: load balancers, auto scaling, circuit breakers, DB replication, caching, etc...
+Each solution would require its own dedicated system.</p>
+<p>C19 offers one, generic way, of solving many issues altogether. In the cases described above, a c19 group can share the state across the system while decoupled 
+from the load of the system.</p>
+<h1><a class="header" href="#use-cases" id="use-cases">Use cases</a></h1>
+<p>There are many use cases where the C19 protocol could be a good fit. C19 is a general-purpose solution for sharing state in a distributed system.
+In this chapter we show a few simple use-cases to help spark up your imagination of the possibilities.</p>
+<p>As you will learn throughout this book, C19 allows for different configuration and <a href="deployment-strategies.html">Deployment Strategies</a>. You will learn about the different <a href="architecture.html">layers</a> and their 
+usage. You will have a chance to look at the different possibilities and extensions of a C19 agent. This will help you figure out how your use case can be solved
+with the C19 protocol.</p>
+<p>One of the benefits of the C19 protocol is that one solution, with only a configuration change, can serve many use-cases in your cluster.</p>
+<h1><a class="header" href="#sharing-state" id="sharing-state">Sharing State</a></h1>
+<p>You have a cluster of services and you want to share state across them.</p>
+<p><img src="figure-4-sharing-state.png" alt="Sharing state use case" title="Sharing state use case" /></p>
+<p>This is a classic case for C19. Services that share the same C19 group will automatically share the state between them, effectively having the state 
+available locally for each service. i.e distributed in-pod cache.</p>
+<p>Note that different services can share the same C19 group. You are not limited to a single service type.
+For example, consider an API gateway service, Web backend and a third service type for user subscription information.</p>
+<h1><a class="header" href="#media-service--pulling-from-origin" id="media-service--pulling-from-origin">Media Service / Pulling from Origin</a></h1>
+<p>You have a cluster of media servers where users are live streaming to the cluster while other users consume the streams.
+When a user publishes a stream their stream will be published to one of the media server instances. When another user wishes to consume 
+that stream they might end up connecting to a different media server instance.</p>
+<p><img src="figure-3-use-case-media-server.png" alt="Media server use case" title="Media server use case" /></p>
+<p>The media server, serving the consumer, must pull the stream from the origin media server. How does it know where the stream origin is?</p>
+<p>When the publisher first connects to the origin media server, the media server will set a key-value to it's local C19 agent. The key would be the identifier of the stream and
+the value would be the IP address of the origin media server. Since all the media servers are part of the same C19 group, the data will be shared across all instances.</p>
+<p>When the consumer connects to a random media server, that media server can query its local C19 agent for the IP address of the origin and pull the stream from it. Simple as that!</p>
+<h1><a class="header" href="#user-subscription-data" id="user-subscription-data">User Subscription Data</a></h1>
+<p>You have a service that depends on another service for user subscription data. To make this interesting, let's say you have two service types 
+that depend on a third service for the user subscription data: One that returns a list of available movies and another one that returns user information, 
+including subscription data.</p>
+<p><img src="figure-2-use-case-user-subscription.png" alt="User subscription use-case" title="User subscription use-case" /></p>
+<p>Interesting to note here is that the movie service and the user profile service are two different services.
+Each one of the services holds a C19 agent and they all share the same c19 group with the subscription service.</p>
+<p>With this solution, instead of bombarding the subscription service with requests for data, hoping that the service will 
+be available and respond in time, the c19 makes sure to bring the subscription data locally to each service.</p>
+<p>Once the data is local, each service can request for data directly from the c19 agent instead of the subscription service.</p>
+<h1><a class="header" href="#standalone-distributed-cache" id="standalone-distributed-cache">Standalone Distributed Cache</a></h1>
+<p>Due to it's nature, the C19 protocol can be deployed as a standalone distributed cache and can be easily horizontally scaled.</p>
+<p>As you've seen with the previous use-cases, the C19 agent is deployed within a pod, alongside the service it serves. As you will learn 
+in <a href="deployment-strategies.html">Deployment Strategies</a> chapter, the C19 protocol can be deployed as a standalone 
+distributed cache or even as a daemonset to be present on every node.</p>
+<p><img src="use-case-standalone.png" alt="Media server use case" /></p>
+<h5><a class="header" href="#standalone-c19-cluster" id="standalone-c19-cluster">Standalone C19 cluster</a></h5>
+<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>This chapter will guide you through configuring and deploying a C19 cluster.</p>
+<p>As you will learn, the C19 protocol can support different deployment strategies and different configurations. In this chapter we will focus on the most common one 
+so you can get an idea of how things work. Later in the book you will learn about the different options this project presents.</p>
+<h1><a class="header" href="#dockerhub" id="dockerhub">Dockerhub</a></h1>
+<p>The C19 docker image is available on Dockerhub and the Dockerfile can be seen in the C19 Github repository.</p>
+<ul>
+<li><a href="https://hub.docker.com/r/c19p/c19">Dockerhub</a></li>
+<li><a href="https://github.com/c19p/c19">Github</a></li>
+</ul>
+<p>[FIXME]: check links</p>
+<h1><a class="header" href="#configuring-the-agent" id="configuring-the-agent">Configuring the Agent</a></h1>
+<p>A C19 agent has 3 parts (layers): agent, state and connection.</p>
+<p>We will go into details about each layer in the <a href="architecture.html">Architecture</a> chapter, but for now all you need to know is 
+that the agent layer is responsible for communicating with your app, the connection layer is responsible for communicating with other 
+C19 agents and the state layer is responsible for holding your data.</p>
+<p>A C19 configuration file is a YAML formatted file. Let's prepare ours:</p>
+<pre><code class="language-yaml">version: 0.1
+spec:
+  agent:
+    kind: Default
+    port: 3097
+  state:
+    kind: Default
+    ttl: null
+    purge_interval: 60000
+  connection:
+    kind: Default
+    port: 4097
+    push_interval: 1000
+    pull_interval: 60000
+    r0: 3
+    timeout: 1000
+    peer_provider:
+      kind: K8s
+      selector:
+        c19: getting-started
+      namespace: default
+</code></pre>
+<p>As you can see, we have our 3 layer configurations: agent, state and connection. Every section starts with the <code>kind</code> configuration which 
+tells C19 which kind of agent/state/connection to load. As you will learn, there can be different types of layer implementations, each would 
+suit different needs.</p>
+<h2><a class="header" href="#agent" id="agent">Agent</a></h2>
+<p><code>kind</code> - We will use the &quot;Default&quot; agent layer. For now, it's enough for you to know that the &quot;Default&quot; agent provides a HTTP server which 
+accepts a JSON formatted calls for getting and setting values to the state.</p>
+<p><code>port</code> - The port to use for the agent HTTP server. The default value, if unspecified, is 3097.</p>
+<h2><a class="header" href="#state" id="state">State</a></h2>
+<p><code>kind</code> - Same as the Agent, we will use the &quot;Default&quot; state implementation. The &quot;Default&quot; state implementation provides a key-value store 
+with an option to set a TTL for each key.</p>
+<p><code>ttl</code> - The TTL to use (in milliseconds). If left out there will be no default TTL set for keys. In any case, as you will learn, you can always set a TTL for a 
+key when setting a value to the state. Default value is no ttl.</p>
+<p><code>purge_interval</code> - The Default state will always filter out expired keys, but will still hold them in memory until purged. This setting controls the 
+interval (in milliseconds) in which expired keys will be purged. Default value is 1 minute.</p>
+<h2><a class="header" href="#connection" id="connection">Connection</a></h2>
+<p><code>kind</code> - We will use the &quot;Default&quot; connection layer implementation. The &quot;Default&quot; connection uses HTTP to exchange the state with other C19 peers. 
+It randomly chooses peers to connect to and exchanges the state at a specified interval.</p>
+<p><code>port</code> - The port to use when connecting to other peers and allowing other peers to connect to this C19 agent. Default port is 4097.</p>
+<p><code>push_interval</code> - Controls the interval (in milliseconds) in which the connection layer will connect and push the state to a random set of C19 peers. Default value is 1 second. 
+Setting this value higher will speed up propagation of the state in the system, but would come at the expense of CPU usage.</p>
+<p><code>pull_interval</code> - Controls the interval (in milliseconds) in which the connection layer will connect and pull the state from a random set of C19 peers. Default value is 60 seconds.
+The connection layer will specify its own state version when pulling the state from other peers. If the state versions match then no state will be exchanged. This is to optimize 
+redundant state exchanges. If the versions do not match then the full state will be returned by the connected peer.</p>
+<p><code>r0</code>: Controls how many peers should this connection layer connect to at each publish interval. Setting this value higher will speed up propagation 
+of the state in the system, but would come at the expense of network load. (connecting to more peers). Default value is 3.</p>
+<p><code>timeout</code> - Controls the connection timeout (in milliseconds) when exchanging state with each peer. Default value is 1 second.</p>
+<p><code>peer_provider</code> - At each <code>publish_interval</code>, the connection layer will query the peer provider for a full list of available peers to choose from. There are 
+different types of peer providers. For example: Kubernetes peer provider that queries for pod endpoints based on a label selector and a static peer provider which allows specifying a predefined 
+list of peer endpoints. Since we will be deploying to a Kubernetes cluster we will be using the K8s 
+peer provider.</p>
+<h3><a class="header" href="#k8s-peer-provider" id="k8s-peer-provider">K8s Peer Provider</a></h3>
+<p><code>kind</code> - Controls the type of peer provider to use. Default value is <code>K8s</code></p>
+<p><code>selector</code> - Sets the Kubernetes pod label selector which will form a C19 group. Default value is none which means all pods will be used for the same C19 group. 
+This option allows you to have many different C19 groups. Each group will have its own isolated state shared.</p>
+<p><code>namespace</code> - The Kubernetes namespace to use. Defaults to the <code>default</code> namespace. Can also be set to <code>:all</code> (mind the <code>:</code>) to specify that all namespaces should be used.</p>
+<h2><a class="header" href="#applying-the-configuration" id="applying-the-configuration">Applying the Configuration</a></h2>
+<p>You specify the configuration file to use when running a C19 agent by using the <code>--config &lt;filename&gt;</code> flag.</p>
+<h1><a class="header" href="#deploying-to-kubernetes" id="deploying-to-kubernetes">Deploying to Kubernetes</a></h1>
+<p>We will deploy the C19 agent along side a pod that holds your application. The C19 agent will be available for your application 
+at the localhost and the port used in our configuration (defaults to 3097).</p>
+<p><img src="figure-4-sharing-state.png" alt="Sharing state use case" /></p>
+<h5><a class="header" href="#deployment-topology" id="deployment-topology">Deployment topology</a></h5>
+<p>Let's say you have the following nginx deployment:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+</code></pre>
+<p>The next section will show you a TL;DR of how to deploy C19 agent alongside the nginx deployment above.
+We will then continue to a step-by-step guide with the important details.</p>
+<h1><a class="header" href="#deploying-to-kubernetes--tldr" id="deploying-to-kubernetes--tldr">Deploying to Kubernetes / TL;DR</a></h1>
+<p>To attach a C19 agent to your nginx deployment, you will need two files:</p>
+<ol>
+<li>A configmap that will hold your C19 configuration as we saw in <a href="getting-started-configuration.html">Configuring the Agent</a> chapter.</li>
+<li>A Kubernetes deployment file.</li>
+</ol>
+<h1><a class="header" href="#1-configmap" id="1-configmap">1. Configmap</a></h1>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: c19-getting-started-config
+immutable: true
+data:
+  config.yaml: |
+    version: 0.1
+    spec:
+      agent:
+        kind: Default
+        port: 3097
+      state:
+        kind: Default
+        ttl: null
+        purge_interval: 60000
+      connection:
+        kind: Default
+        port: 4097
+        push_interval: 1000
+        pull_interval: 60000
+        r0: 3
+        timeout: 1000
+        peer_provider:
+          kind: K8s
+          selector:
+            c19: getting-started
+          namespace: default
+</code></pre>
+<p>Save this as <code>configmap.yaml</code> file and apply it to the cluster like so:</p>
+<pre><code class="language-shell">kubectl apply -f configmap.yaml
+</code></pre>
+<h1><a class="header" href="#2-deployment-file" id="2-deployment-file">2. Deployment File</a></h1>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        c19: getting-started
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      - name: c19
+        image: c19p/c19:0.1.0
+        args: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+        ports:
+          - name: agent
+            containerPort: 3097
+            protocol: TCP
+          - name: connection
+            containerPort: 4097
+            protocol: TCP
+        volumeMounts:
+          - name: c19
+            mountPath: /etc/c19
+      volumes:
+        - name: c19
+          configMap:
+            name: c19-getting-started-config
+</code></pre>
+<p>Save this as <code>deployment.yaml</code> file and apply it to the cluster like so:</p>
+<pre><code class="language-shell">kubectl apply -f deployment.yaml
+</code></pre>
+<p><strong>That's it! Your C19 powered Nginx is now deployed to Kubernetes and is ready to be used.</strong></p>
+<p>In the next section we will go through what we just did with a bit more details. Don't worry, it will still feel like a TL;DR.
+If you feel comfortable with what we did above, you can skip the step-by-step walkthrough and jump right into <a href="getting-started-test-deployment.html">Testing the Deployment</a>.</p>
+<h1><a class="header" href="#deploying-to-kubernetes--step-by-step" id="deploying-to-kubernetes--step-by-step">Deploying to Kubernetes / Step-by-Step</a></h1>
+<p>We need three things to configure:</p>
+<ol>
+<li>Add a label to the pod to be used as the selector for the C19 group</li>
+<li>Add a C19 agent container to the pod</li>
+<li>Add a configmap with our C19 configuration and refer to it from the container definition</li>
+</ol>
+<h2><a class="header" href="#labeling-our-pod" id="labeling-our-pod">Labeling Our Pod</a></h2>
+<p>Note that in this example we use a single service type: nginx, but as mentioned before, this can be cross services.
+Imagine you had another service: web. You would do the same for the web pod: add a container, use the same label and refer to the same configuration.</p>
+<p>We will add the following label selector to our pod:
+<code>c19: getting-started</code> this matches our configuration from the previous section.</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        c19: getting-started
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+</code></pre>
+<h2><a class="header" href="#add-a-c19-container-to-the-pod" id="add-a-c19-container-to-the-pod">Add a C19 Container to the Pod</a></h2>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        c19: getting-started
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      - name: c19
+        image: c19p/c19:0.1.0
+        args: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+        ports:
+          - name: agent
+            containerPort: 3097
+            protocol: TCP
+          - name: connection
+            containerPort: 4097
+            protocol: TCP
+</code></pre>
+<p>As you can see, we are using the ports we defined in our C19 configuration for the agent and connection layers (3097, 4097 respectively).</p>
+<h2><a class="header" href="#add-a-configmap-and-refer-to-it-from-the-pod-definition" id="add-a-configmap-and-refer-to-it-from-the-pod-definition">Add a Configmap and Refer to it From the Pod Definition</a></h2>
+<h4><a class="header" href="#lets-first-create-the-config-map-configmapyaml" id="lets-first-create-the-config-map-configmapyaml">Let's first create the config map (configmap.yaml):</a></h4>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: c19-getting-started-config
+immutable: true
+data:
+  config.yaml: |
+    version: 0.1
+    spec:
+      agent:
+        kind: Default
+        port: 3097
+      state:
+        kind: Default
+        ttl: null
+        purge_interval: 60000
+      connection:
+        kind: Default
+        port: 4097
+        push_interval: 1000
+        pull_interval: 60000
+        r0: 3
+        timeout: 5000
+        peer_provider:
+          kind: K8s
+          selector:
+            c19: getting-started
+          namespace: default
+</code></pre>
+<p>Save this as <code>configmap.yaml</code> file and let's apply this to the cluster:</p>
+<pre><code class="language-shell">kubectl apply -f configmap.yaml
+</code></pre>
+<h4><a class="header" href="#and-finally-lets-refer-to-our-configuration-from-the-configmap" id="and-finally-lets-refer-to-our-configuration-from-the-configmap">And finally, let's refer to our configuration from the configmap</a></h4>
+<h2><a class="header" href="#the-final-deployment-yaml-deploymentyaml" id="the-final-deployment-yaml-deploymentyaml">The Final Deployment YAML (deployment.yaml):</a></h2>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        c19: getting-started
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      - name: c19
+        image: c19p/c19:0.1.0
+        args: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+        ports:
+          - name: agent
+            containerPort: 3097
+            protocol: TCP
+          - name: connection
+            containerPort: 4097
+            protocol: TCP
+        volumeMounts:
+          - name: c19
+            mountPath: /etc/c19
+      volumes:
+        - name: c19
+          configMap:
+            name: c19-getting-started-config
+</code></pre>
+<p>Save this as a <code>deployment.yaml</code> file and let's apply this to our cluster:</p>
+<pre><code class="language-shell">kubectl apply -f deployment.yaml
+</code></pre>
+<h1><a class="header" href="#testing-the-deployment" id="testing-the-deployment">Testing the Deployment</a></h1>
+<p>Now that we have our C19 powered Nginx deployment, let's test it.</p>
+<p>We'll use Kubernetes port-forwarding to have two of the pods available to us locally. We will then use <code>curl</code> to get and set values to the C19 agent.</p>
+<h1><a class="header" href="#1-port-forwarding" id="1-port-forwarding">1. Port-Forwarding</a></h1>
+<pre><code class="language-shell">$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-6bc49755fb-6h4l8   2/2     Running   0          32m
+nginx-deployment-6bc49755fb-v4nx9   2/2     Running   0          32m
+nginx-deployment-6bc49755fb-vw7q9   2/2     Running   0          32m
+</code></pre>
+<pre><code class="language-shell">kubectl port-forward nginx-deployment-6bc49755fb-6h4l8 3097:3097
+</code></pre>
+<pre><code class="language-shell">kubectl port-forward nginx-deployment-6bc49755fb-v4nx9 3098:3097
+</code></pre>
+<p>As you can see, we port-forwarded local port 3097 to 3097 of one pod and 3098 to 3097 of a second pod.</p>
+<p>We will now use <code>curl</code> to set values to one of the C19 agents and see that the data is available on the second C19 agent as well.</p>
+<h1><a class="header" href="#2-setting-and-getting-values" id="2-setting-and-getting-values">2. Setting and Getting Values</a></h1>
+<pre><code class="language-shell">curl -XPUT localhost:3097/ -d '{&quot;cat&quot;: {&quot;value&quot;:&quot;garfield&quot;}}'
+</code></pre>
+<p>We just put the key/value pair <code>cat</code> and <code>garfield</code> to the first C19 agent.</p>
+<p>Let's get the value from this pod first:</p>
+<pre><code class="language-shell">$ curl localhost:3097/cat
+{&quot;value&quot;:&quot;garfield&quot;,&quot;ts&quot;:1603548753122,&quot;ttl&quot;:null}
+</code></pre>
+<p>You can see that the value returned to us is a JSON that includes the value, the timestamp and the ttl, which is set to <code>null</code> in this example.</p>
+<p>Now let's get the value from the second C19 pod:</p>
+<pre><code class="language-shell">$ curl localhost:3098/cat
+{&quot;value&quot;:&quot;garfield&quot;,&quot;ts&quot;:1603548753122,&quot;ttl&quot;:null}
+</code></pre>
+<p>We used <code>3098</code> this time to make the call to the second C19 agent. We got the same value! True magic ;)</p>
+<h1><a class="header" href="#3-setting-a-ttl" id="3-setting-a-ttl">3. Setting a TTL</a></h1>
+<p>Let's set a ttl for the <code>cat</code> key. It doesn't matter if we use the first or the second C19 agent for that, as the data will propagate between them.
+For the sake of this example, we will use the second C19 agent:</p>
+<pre><code class="language-shell">curl -XPUT localhost:3098/ -d '{&quot;cat&quot;: {&quot;value&quot;:&quot;garfield&quot;, &quot;ttl&quot;: 20000}}'
+</code></pre>
+<p>We just set a TTL of 20 seconds to the<code>cat</code> key. Let's quickly get it from the first pod before it goes away:</p>
+<pre><code class="language-shell">$ curl localhost:3097/cat
+{&quot;value&quot;:&quot;garfield&quot;,&quot;ts&quot;:1603549250457,&quot;ttl&quot;:20000}
+</code></pre>
+<p>Ok, we got it back. Now if we wait long enough and try to get the value again:</p>
+<pre><code class="language-shell">$ curl localhost:3097/cat
+not found
+</code></pre>
+<p>We got <code>not found</code> (404) as a response. The value is long-gone...</p>
+<h1><a class="header" href="#4-getting-the-whole-state" id="4-getting-the-whole-state">4. Getting the Whole State</a></h1>
+<p>The <code>Default</code> connection layer implementation exposes port 4097 (by default) as the port for exchanging data between peers.
+You can use that port to query the whole state! Let's see how we can do this:</p>
+<pre><code class="language-shell">$ kubectl port-forward nginx-deployment-6bc49755fb-vw7q9 4097:4097
+
+$ curl -XPUT localhost:3097/ -d '{&quot;cat&quot;: {&quot;value&quot;:&quot;garfield&quot;}}'
+$ curl -XPUT localhost:3097/ -d '{&quot;dog&quot;: {&quot;value&quot;:&quot;Snoopy&quot;}}'
+
+$ curl -s localhost:4097 | jq
+{
+  &quot;dog&quot;: {
+    &quot;value&quot;: &quot;Snoopy&quot;,
+    &quot;ts&quot;: 1603549623758,
+    &quot;ttl&quot;: null
+  },
+  &quot;cat&quot;: {
+    &quot;value&quot;: &quot;garfield&quot;,
+    &quot;ts&quot;: 1603549562977,
+    &quot;ttl&quot;: null
+  }
+}
+</code></pre>
+<p>Amazing! </p>
+<p>(We used <code>jq</code> for pretty printing the JSON value)</p>
+<h1><a class="header" href="#5-keep-playing" id="5-keep-playing">5. Keep playing</a></h1>
+<p>I hope you got the gist of it. Feel free to keep playing and experimenting with the C19 cluster.</p>
+<h1><a class="header" href="#standalone-deployment-using-helm-chart" id="standalone-deployment-using-helm-chart">Standalone Deployment Using Helm Chart</a></h1>
+<p>As you've seen in the use-cases chapter, the C19 can be deployed as a <a href="use-case-standalone-cache.html">standalone distributed cache</a>.</p>
+<p><img src="use-case-standalone.png" alt="Media server use case" /></p>
+<p>In this section we will walkthrough a quick deployment of a standalone C19 cluster using a Helm chart.</p>
+<h1><a class="header" href="#1-the-helm-chart" id="1-the-helm-chart">1. The Helm Chart</a></h1>
+<pre><code class="language-yaml">replicaCount: 3
+
+image:
+  repository: c19
+  tag: &quot;0.1.0&quot;
+
+service:
+  type: ClusterIP
+  port: 3097
+
+agent:
+  kind: Default
+  port: 3097
+
+connection:
+  kind: Default
+  port: 4097
+  push_interval: 1000
+  pull_interval: 60000
+  r0: 3
+  timeout: 1000
+
+state:
+  ttl: false
+  purge_interval: 60000
+
+config:
+  filename: /etc/c19/config.yaml
+
+log:
+  level: c19=info
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+serviceAccount:
+  create: false
+
+ingress:
+  enabled: false
+</code></pre>
+<p>If you've gone through the <a href="getting-started-configuration.html">Configuring the Agent</a> chapter, you should feel comfortable with the above Helm chart. It's just another form of describing the 
+configuration which you already know.</p>
+<p>You can find the helm chart under the <code>helm</code> repository of the C19 project.</p>
+<p>Apply this to your Kubernetes cluster:</p>
+<pre><code class="language-shell">helm install getting-started helm/standalone
+</code></pre>
+<h1><a class="header" href="#2-the-c19-service" id="2-the-c19-service">2. The C19 Service</a></h1>
+<p>Since we deployed C19 as a standalone distributed cache, we will find a C19 Kubernetes service that will traffic our data to and from 
+the C19 pods:</p>
+<pre><code class="language-shell">$ kubectl get services
+NAME                             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+getting-started-c19-standalone   ClusterIP   10.96.29.46   &lt;none&gt;        3097/TCP   3m
+</code></pre>
+<p>The C19 service exposes the port 3097 and is accessible from across the cluster. </p>
+<h1><a class="header" href="#3-testing" id="3-testing">3. Testing</a></h1>
+<p>To test the deployment, you can use the same techniques as we used in the previous chapter <a href="getting-started-test-deployment.html">Testing the Deployment</a>.</p>
+<h1><a class="header" href="#non-kubernetes-deployment" id="non-kubernetes-deployment">Non-Kubernetes Deployment</a></h1>
+<p>If you are not running a Kubernetes cluster or you want to test C19 locally without a Kubernetes cluster, you can easily do so by using the Static Peer Provider.</p>
+<p>As you've learned in previous chapters, the Connection layer uses a Peer Provider to query for available peers to choose from. The peer provider we've been using so far was 
+K8s since we deployed and used C19 inside a Kubernetes cluster. But that doesn't mean we can't use it outside of a Kuernetes cluster.</p>
+<h1><a class="header" href="#the-static-peer-provider" id="the-static-peer-provider">The Static Peer Provider</a></h1>
+<p>The static peer provider allows us to manually and statically specify the peers that are available in our C19 group.</p>
+<pre><code class="language-yaml">  connection:
+    kind: Default
+    push_interval: 1000
+    pull_interval: 60000
+    port: 4097
+    target_port: 4097
+    r0: 3
+    timeout: 1000
+    peer_provider:
+      kind: Static
+      peers:
+        - 192.168.1.2
+        - 192.168.86.204
+</code></pre>
+<p>The connection configuration above uses the static peer provider with 2 available peers in the group. You can specify how many you want.
+The port that will be used by the connection layer is determined as follows, by this order:</p>
+<ol>
+<li>The static peer provider includes the port with a peer. For example: <code>192.168.1.2:5097</code></li>
+<li><code>target_port</code> is specified</li>
+<li>If non of the above exist then <code>port</code> will be used as the target port.</li>
+</ol>
+<h1><a class="header" href="#docker-compose" id="docker-compose">Docker Compose</a></h1>
+<p>There are different ways you can run C19 on your local machine. For this demonstration and for the sake of simplicity, we will use docker-compose.</p>
+<p>If you'd like to deploy without Docker then you'd have to pull the source code from the C19 Github 
+repository and compile it using Rust. If you are familiar with Rust then you should find the procedure for compiling straight forward. Just 
+use <code>cargo build --release</code> and you're done.</p>
+<p>After you have <code>c19</code> binary ready, you can move forward with the following steps and make the proper adjustments when things are specifically relevant 
+for Docker deployment.</p>
+<h1><a class="header" href="#1-configuring-for-local-deployment" id="1-configuring-for-local-deployment">1. Configuring for Local Deployment</a></h1>
+<p>So now that we know all about the static peer provider, let's configure it so we can then deploy a C19 cluster on our local machine.</p>
+<p>We will use the following configuration for our C19 agents:</p>
+<pre><code class="language-yaml">version: 0.1
+spec:
+  agent:
+    kind: Default
+    port: 3097
+  state:
+    kind: Default
+    ttl: null
+    purge_interval: 10000
+  connection:
+    kind: Default
+    push_interval: 1000
+    pull_interval: 60000
+    port: 4097
+    r0: 3
+    timeout: 1000
+    peer_provider:
+      kind: Static
+      peers:
+        - 192.168.0.2
+        - 192.168.0.3
+        - 192.168.0.4
+</code></pre>
+<p>Let's save this configuration as <code>config.yaml</code></p>
+<h1><a class="header" href="#2-configuring-docker-compose" id="2-configuring-docker-compose">2. Configuring <code>docker-compose</code></a></h1>
+<p>We will configure our docker-compose to use a network which will allow us to set a static IP address for each C19 agent.</p>
+<pre><code class="language-yaml">version: &quot;3.8&quot;
+x-c19: &amp;c19
+  image: c19p/c19:0.1.0
+  command: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+  environment:
+    RUST_LOG: &quot;c19=info&quot;
+  deploy:
+    replicas: 1
+  volumes:
+    - &quot;./config.yaml:/etc/c19/config.yaml:ro&quot;
+
+services:
+  c191:
+    &lt;&lt;: *c19
+    networks:
+      cluster:
+        ipv4_address: 192.168.0.2
+    ports:
+      - &quot;3097:3097&quot;
+      - &quot;4097:4097&quot;
+
+  c192:
+    &lt;&lt;: *c19
+    networks:
+      cluster:
+        ipv4_address: 192.168.0.3
+    ports:
+      - &quot;3098:3097&quot;
+      - &quot;4098:4097&quot;
+
+  c193:
+    &lt;&lt;: *c19
+    networks:
+      cluster:
+        ipv4_address: 192.168.0.4
+    ports:
+      - &quot;3099:3097&quot;
+      - &quot;4099:4097&quot;
+
+networks:
+  cluster:
+    ipam:
+      driver: default
+      config:
+        - subnet: &quot;192.168.0.0/24&quot;
+</code></pre>
+<p>Save this as <code>docker-compose.yaml</code></p>
+<p>As you can see, we configured the <code>cluster</code> network and used the same <code>c19</code> service configuration except for the static IP address 
+and the port mapping.</p>
+<h1><a class="header" href="#3-running-the-c19-agents" id="3-running-the-c19-agents">3. Running the C19 Agents</a></h1>
+<pre><code class="language-shell">docker-compose up
+</code></pre>
+<h1><a class="header" href="#4-inspecting-our-deployment" id="4-inspecting-our-deployment">4. Inspecting Our Deployment</a></h1>
+<p>Let's inspect our deployment:</p>
+<pre><code class="language-shell">$ docker-compose ps
+      Name                    Command               State                       Ports                     
+----------------------------------------------------------------------------------------------------------
+resources_c191_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3097-&gt;3097/tcp, 0.0.0.0:4097-&gt;4097/tcp
+resources_c192_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3098-&gt;3097/tcp, 0.0.0.0:4098-&gt;4097/tcp
+resources_c193_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3099-&gt;3097/tcp, 0.0.0.0:4099-&gt;4097/tcp
+</code></pre>
+<p>We have three C19 agents as expected, exposing ports to our local host for our inspection.</p>
+<p>You can now follow up with <a href="getting-started-test-deployment.html">Testing the Deployment</a> chapter to play around with your deployment.</p>
+<h1><a class="header" href="#setting-and-getting-values" id="setting-and-getting-values">Setting and Getting Values</a></h1>
+<p>Setting and getting values from a state is done by the Agent layer. This is the entry point to the c19 agent and where your app comes into play.
+Your application uses the endpoints exposed by the Agent layer of the C19 agent to get and set values to the state.</p>
+<p>Communicating with the Agent layer depends on the Agent layer chosen by you in the C19 configuration. If you've followed the Getting Started guide so far, 
+then you have noticed we were using the <code>Default</code> agent layer which exposes two endpoints: GET and PUT for getting and setting values.</p>
+<h2><a class="header" href="#setting-a-value-while-using-the-default-agent-layer" id="setting-a-value-while-using-the-default-agent-layer">Setting a Value While Using the Default Agent Layer</a></h2>
+<pre><code class="language-shell">curl -XPUT localhost:3098/ -d '{&quot;cat&quot;: {&quot;value&quot;:&quot;garfield&quot;, &quot;ttl&quot;: 20000}}'
+</code></pre>
+<p>The <code>Default</code> agent layer implementation expects a PUT request and will pass the value as-is to the state layer implementation. The agent layer 
+is agnostic to the content of the PUT request, but the <code>Default</code> state layer, which we are using for our examples, dictates that the body will be a JSON object with the following form:</p>
+<pre><code class="language-json">{
+  &quot;key&quot;: {
+    &quot;value&quot;: &quot;any valid json value, including a json object&quot;,
+    &quot;ttl&quot;: &quot;optional ttl value for this key&quot;,
+    &quot;ts&quot;: &quot;optional timestamp for the key&quot;
+  }
+}
+</code></pre>
+<h2><a class="header" href="#getting-a-value-while-using-the-default-agent-layer" id="getting-a-value-while-using-the-default-agent-layer">Getting a Value While Using the Default Agent Layer</a></h2>
+<pre><code class="language-shell">$ curl localhost:3097/cat
+{&quot;value&quot;:&quot;garfield&quot;,&quot;ts&quot;:1603548753122,&quot;ttl&quot;:null}
+</code></pre>
+<p>The <code>Default</code> agent layer expects a GET request while the path is the <code>key</code> to retrieve from the state.
+Since we are using the <code>Default</code> state layer implementation, the answer is a JSON body similar to the one used for setting a value.
+The agent itself is agnostic to the body returned by the state layer.</p>
+<h1><a class="header" href="#different-agent-layers" id="different-agent-layers">Different Agent Layers</a></h1>
+<p>The above is an example for using the <code>Default</code> agent layer. As mentioned, different agent layers will have 
+different implementations. Please refer to <a href="appendix-i.html">Appendix I</a> to get specific information of the different Agent layers. </p>
+<h1><a class="header" href="#compatibility" id="compatibility">Compatibility</a></h1>
+<p>Important to note that not all layers are compatible with one-another. One Agent layer might not be compatible with 
+a certain State layer. Please refer to the documentation of the layers you choose to make sure everything can work together.</p>
+<h1><a class="header" href="#deployment-strategies" id="deployment-strategies">Deployment Strategies</a></h1>
+<p>There are different ways to use The C19 Protocol. As you may have seen in the <a href="use-cases.html">Use cases</a> chapter, deployment of the C19 protocol 
+is dependent on your use-case.</p>
+<p>The most classic deployment strategy and where the C19 shines against other alternatives is to have it deployed alongside your application 
+and let it bring the data you need locally to your application.</p>
+<p>But since the C19 protocol is a general purpose, distributed shared state, it can be deployed and used in many other ways. Let's briefly go 
+through different deployment strategies to spark up your imagination. You are free to experiment with different deployment strategies and use cases.</p>
+<h1><a class="header" href="#deploying-alongside-a-service" id="deploying-alongside-a-service">Deploying Alongside a Service</a></h1>
+<p><img src="figure-4-sharing-state.png" alt="Sharing state use case" title="Sharing state use case" /></p>
+<p>As seen in the <a href="use-case-sharing-state.html">Sharing State</a> use case, this deployment strategy has the c19 agent attached to your application 
+by deploying it in the same pod as your application. It is then available to your application on the localhost.</p>
+<p>You configure the C19 to be part of a group of other C19 agents that are attached to your other services and share the state 
+between them. Note that the other C19 agent can be attached to different kinds of services. </p>
+<p>Please refer to <a href="getting-started-deploying-to-kubernetes.html">Getting Started / Deploying to Kubernetes</a> chapter for a walkthrough on how to do that.</p>
+<h1><a class="header" href="#deploying-as-a-standalone-cluster" id="deploying-as-a-standalone-cluster">Deploying as a Standalone Cluster</a></h1>
+<p><img src="use-case-standalone.png" alt="Media server use case" /></p>
+<p>Since the C19 agent is agnostic to how and where it runs, you can deploy it as a standalone service.</p>
+<p>You can then have it connect to other C19 agents by using the proper peer provider, depending on your usage, whether it's 
+a Kubernetes cluster or anything else.</p>
+<p>Once you have a C19 cluster you can create a service or other load balancer to act as a gateway to your C19 cluster and to 
+allow you to get and set values to the shared state.</p>
+<p>The C19 Protocol can be easily scaled horizontaliy by adding more replicas of C19 agents.
+Once an agents comes online it will shortly after be updated with the current shared state.</p>
+<p>Please refer to the <a href="use-case-standalone-cache.html">Standalone Distributed Cache Use Case</a> to get some more ideas.</p>
+<h1><a class="header" href="#deploying-as-a-daemonset" id="deploying-as-a-daemonset">Deploying as a Daemonset</a></h1>
+<p><img src="deployment-strategy-daemonset.png" alt="Deployment Strategy / Daemonset" title="Deployment Strategy / Daemonset" /></p>
+<p>Similar to the standalone deployment strategy and if you are deploying to a Kubernetes cluster, you can have the C19 agent 
+deployed as a daemonset and have it deployed to every node or a subset of nodes in your Kubernetes cluster.</p>
+<p>You can then create a service to act as a gateway to your C19 cluster or use a node port where you will be able to 
+access your C19 cluster directly on each node.</p>
+<p>This would have your cluster-wide shared state available on every node.</p>
+<h1><a class="header" href="#a-hybrid-deployment" id="a-hybrid-deployment">A Hybrid Deployment</a></h1>
+<p><img src="deployment-strategy-hybrid.png" alt="Deployment Strategy / Hybrid" title="Deployment Strategy / Hybrid" /></p>
+<p>You are not bounded to a single deployment strategy. If your use case justifies it, you may combine 
+different deployment strategies together. A hybrid solution.</p>
+<p>Consider a case where you have the classic deployment strategy where the C19 agents are attached to your services.
+You then want a standalone deployment that will be part of the same C19 group as with 
+your services, and act as a gateway to the shared state.</p>
+<h1><a class="header" href="#architecture" id="architecture">Architecture</a></h1>
+<p>If you've followed the <code>Getting Started</code> guide and read through <a href="getting-started-configuration.html">Configuring the Agent</a> chapter, then you had a chance to get a glimpse into the C19 agent architecture.
+The main components of a C19 agents are the three layers: Agent, Connection and State. Each layer has different responsibilities within the C19 agent.</p>
+<p><code>The State</code> is where your data is being held. It allows the other layers to set and get values to and from the state.</p>
+<p><code>The Agent</code> is the entry-point to your application and where you communicate with the C19 agent. It exposes ways for your application 
+to communicate with the C19 agent, set and get values to and from the state.</p>
+<p><code>The Connection</code> is the low-level layer that is responsible for communicating with other C19 agents and exchange the state with them.</p>
+<p>Due to the nature of C19 extensibility, there are different implementations for each layer. You are free to choose whichever one suites your needs. Depending on 
+your use case you may want to choose a <code>State</code> that acts as a key/value store or maybe one that holds blobs of data.</p>
+<p>Your <code>Agent</code> might be one that accepts HTTP JSON requests for setting and getting values or it might be one that communicates over WebSockets.</p>
+<p>The <code>Connection</code> layer you choose affects how your data is being exchanged with other C19 agents. You may choose one that is optimized for fast state propagation 
+at the expense of network and CPU resources or maybe one that is slower to propagate data but is low on resources.</p>
+<p>In this chapter we will talk about each layer in a bit more detail and use the <code>Default</code> layer implementations as an example.</p>
+<h1><a class="header" href="#the-state-layer" id="the-state-layer">The State Layer</a></h1>
+<p>The state layer is where your data is being held. The State is responsible for the way it holds your data and represents the data structure.
+A State can be a key/value store, a blob of data or anything else that is either structured or unstructured.</p>
+<p>The State exposes ways to set and get data to and from it and is being used by the Agent and Connection layers.</p>
+<p>Let's inspect the <code>Default</code> state layer implementation. We'll use that as an example of how a state behaves and what configuration is available.
+When you feel comfortable with what a <code>State</code> is, you can refer to <a href="appendix-i-states.html">Appendix I / Available States</a> to browse through available states and choose the 
+one that fits your use case. Make sure to check that section often as we expect this list of available states to grow.</p>
+<h1><a class="header" href="#the-default-state" id="the-default-state">The Default State</a></h1>
+<p>In this section we will walk through the <code>Default</code> implementation of the <code>State</code> layer. Please don't be mistaken by 
+thinking <code>Default</code> means just a placeholder for something more powerful or that this implementation is not for production usage.</p>
+<p>This <code>Default</code> implementation is powerful enough to answer most use cases. It is default just because we had to start with something...</p>
+<h1><a class="header" href="#behavior-of-the-default-state" id="behavior-of-the-default-state">Behavior of the Default State</a></h1>
+<p>The <code>Default</code> state layer is a key/value store, where the key is expected to be a string and the value anything JSON compatible, including a JSON 
+object.</p>
+<p>The <code>Default</code> state layer supports setting up a TTL per key or a default TTL to be applied to all keys that don't have a TTL set when 
+putting a value into the state.</p>
+<p>Also supported is a data seeder. You will learn more about data seeders in the <a href="data-seeders.html">Data Seeders</a> chapter. For now it is enough 
+to know that a data seeder will load your data into the C19 agent as it first launches.</p>
+<h1><a class="header" href="#state-configuration" id="state-configuration">State Configuration</a></h1>
+<pre><code class="language-yaml">state:
+  kind: Default
+  ttl: null
+  purge_interval: 60000
+  data_seeder: 
+    kind: File
+    filename: data.json
+</code></pre>
+<p><code>kind</code> - Here we mention we would like to use the <code>Default</code> state layer.</p>
+<p><code>ttl</code> - The TTL to use (in milliseconds). If left out then there will be no default TTL set for keys. In any case, you can always set a TTL for a 
+key when setting a value to the state. Default value is no ttl.</p>
+<p><code>purge_interval</code> - The Default state will always filter out expired keys, but will still hold them in memory until purged. This setting controls the 
+interval (in milliseconds) in which expired keys will be purged. Default value is 1 minute.</p>
+<p><code>data_seeder</code> - Optional and can be omitted. The Data Seeder to use when launching the C19 agent. In the above example we are using a data seeder that loads 
+the data from a file named <code>data.json</code></p>
+<h1><a class="header" href="#data-seeders" id="data-seeders">Data Seeders</a></h1>
+<p>When a C19 agent launches it connects to other C19 peers and exchanges data with them. This means that as soon as it launches it will be in par with other C19 agents and 
+there will be no need for seeding data.</p>
+<p>But there are cases where you'd want to seed external data into your C19 agent. We will talk about a few of these cases in the <a href="seeding-data.html">Seeding Data</a> chapter.</p>
+<p><code>Data Seeders</code> allow you to seed external data into your C19 agent as soon as it launches. You can refer to <a href="appendix-i-data-seeders.html">Appendix I / Available Data Seeders</a> for a list of available 
+data seeders.</p>
+<p>Let's explore the <code>File</code> data seeder.</p>
+<h2><a class="header" href="#file-data-seeder" id="file-data-seeder">File Data Seeder</a></h2>
+<p>This data seeder will load data from a file. The data in the file must be compatible with the <code>State</code> layer you are using.
+For our example, we assume the <code>Default</code> state layer implementation.</p>
+<pre><code class="language-json">{
+  &quot;cat&quot;: {
+    &quot;value&quot;: &quot;garfield&quot;,
+    &quot;ttl&quot;: 3600000
+  },
+  &quot;dog&quot;: {
+    &quot;value&quot;: &quot;snoopy&quot;
+  }
+}
+</code></pre>
+<p>When the C19 agent first launches it will load this data into its state and will continue with exchanging this state with other peers as normal.</p>
+<h1><a class="header" href="#the-agent-layer" id="the-agent-layer">The Agent Layer</a></h1>
+<p>The <code>Agent</code> is the entry-point to your application. An <code>Agent</code> exposes ways for your application to get and set values to and from the <code>State</code>.</p>
+<p>Different agents can use different ways to expose your application to get and set values. We will explore the implementation of 
+the <code>Default</code> agent layer as an example.</p>
+<p>Please refer to <a href="appendix-i-agents.html">Appendix I / Available Agents</a> to learn about available agents to choose from.</p>
+<h1><a class="header" href="#the-default-agent" id="the-default-agent">The Default Agent</a></h1>
+<p>The <code>Default</code> agent layer allows an application to get and set values using HTTP requests.
+It does not assume anything about the <code>State</code> being used, hence the body of the request can be anything.</p>
+<h2><a class="header" href="#setting-values" id="setting-values">Setting Values</a></h2>
+<p>The agent exposes a <code>PUT</code> request endpoint which accepts a body of any type that will be passed to the state.
+As mentioned, the <code>Default</code> agent does not assume anything about the <code>State</code> being used. This means that the body of the 
+message can represent any type. When using the <code>Defaul</code> state layer, the body of the message is expected to be a JSON object 
+representing the value being set:</p>
+<pre><code class="language-shell">curl -XPUT localhost:3097/ -d '{&quot;cat&quot;: {&quot;value&quot;:&quot;garfield&quot;}}'
+</code></pre>
+<h2><a class="header" href="#getting-values" id="getting-values">Getting Values</a></h2>
+<p>The agent exposes a <code>GET</code> request endpoint where the path represents the <code>key</code> to be retrieved from the state. The response is dependent on the <code>State</code> 
+being used. In the following example we are using the <code>Default</code> state layer which outputs a JSON object with the value 
+and extra details:</p>
+<pre><code class="language-shell">$ curl localhost:3097/cat
+{&quot;value&quot;:&quot;garfield&quot;,&quot;ts&quot;:1603548753122,&quot;ttl&quot;:null}
+</code></pre>
+<h2><a class="header" href="#configuration" id="configuration">Configuration</a></h2>
+<pre><code class="language-yaml">agent:
+  kind: Default
+  port: 3097
+</code></pre>
+<p>The only relevant configuration option for the <code>Default</code> agent layer is the port to bind to when accepting connections from an application.
+The default port value is <code>3097</code>.</p>
+<h1><a class="header" href="#the-connection-layer" id="the-connection-layer">The Connection Layer</a></h1>
+<p>The connection layer is responsible for exchanging the state with other C19 agents. It is up to the implementation of the 
+connection layer to determine how the state should be exchanged, at what rate, what would be the transport layer, etc...</p>
+<p>Different connection layer implementations might use different techniques and optimizations when exchanging data with other peers. You 
+may refer to the <a href="appendix-i-connections.html">Appendix I / Available Connections</a> section to browse through available connection layer implementations and their use-case.</p>
+<p>In the next section we will explore the <code>Default</code> connection layer implementation and its different configurations.</p>
+<h1><a class="header" href="#the-default-connection" id="the-default-connection">The Default Connection</a></h1>
+<p>The <code>Default</code> connection layer implementation picks up random set of peers on each specified interval and uses HTTP calls to exchange its own state with 
+the peer's state.</p>
+<p>There are different subtleties that affect its behavior and can be configured. Let's explore them through the available configuration options.</p>
+<h2><a class="header" href="#configuration-and-behavior" id="configuration-and-behavior">Configuration and Behavior</a></h2>
+<pre><code class="language-yaml">connection:
+  kind: Default
+  port: 4097
+  push_interval: 1000
+  pull_interval: 60000
+  r0: 3
+  timeout: 1000
+  peer_provider:
+    kind: K8s
+    selector:
+      c19: getting-started
+    namespace: default
+</code></pre>
+<p><code>port</code> - The port to bind to and accept connections from other peers.</p>
+<p><code>push_interval</code> - The rate (in milliseconds) in which the connection layer will connect and push its state to other peers. To optimize state exchanges, the connection layer will only send the changes since 
+last publish time. See the <code>pull_interval</code> for when the full state will be exchanged with other peers. The lower this number is, the faster the reaction 
+to new state changes, but at the expense of CPU time. Depending on the size of your data, preparing the state changes to be published might be time consuming.</p>
+<p><code>pull_interval</code> - The rate (in milliseconds) in which the connection layer will connect and pull the state of other peers. It will specify the version of its own state and only if the versions do 
+no match then the other peer will respond with its full state.</p>
+<p><code>r0</code> - The number of peers to connect to on each <code>publish_interval</code>. The peers are being selected randomly. The bigger this number is, the faster the data will propagate across the system, but at the expense of time 
+it takes for each exchange. The implementation tries to parallelize the connections to other peers, but it still has its limits. If the rate of changes to the state is high and you 
+choose a big <code>r0</code>, it comes at the expense of publishing new values to the system.</p>
+<p><code>timeout</code> - The connection timeout (in milliseconds). If this connection layer cannot connect to other peer within this timeout then the connection will be aborted.</p>
+<p><code>peer_provider</code> - The connection uses a peer provider to get the full list of available peers to connect to. It will then choose a random set of peers based on the <code>r0</code> configuration value. The peer provider 
+can be anything on the available peer providers list. Please refer to the <a href="appendix-i-peer-providers.html">Appendix I / Available Peer Providers</a> to browse through. In the configuration example above, we are using the <code>K8s</code> peer provider. This 
+peer provider targets Kubernetes and allows you to choose the label selector of the pods that are part of your C19 group.</p>
+<h2><a class="header" href="#exchanging-the-state" id="exchanging-the-state">Exchanging the State</a></h2>
+<p>The <code>Default</code> connection layer selects a random set of peers to connect to and exchange the state with.</p>
+<p>It runs two threads: push and pull.
+When pushing, only the changes from last publish time are being sent to other peers.</p>
+<p>When pulling, the connection layer will specify its own state version and only if it does not match the peer's state version, will the full state be returned by the peer.</p>
+<p>The state version is calculated from the keys and timestamps for each keys.</p>
+<h1><a class="header" href="#peer-providers" id="peer-providers">Peer Providers</a></h1>
+<p>When a connection layer needs to select peers to connect to it uses a <code>Peer Provider</code> to get the full list of available peers to choose from.
+This is of course implementation dependent and you should first confirm that the connection layer you choose is working with peer providers.</p>
+<p>The <code>Default</code> connection layer is using a peer provider to get the full list of available peers. As with other components in the C19 agent, 
+there are different peer providers to choose from.</p>
+<p>Please refer to <a href="appendix-i-peer-providers.html">Appendix I / Available Peer Providers</a> for a full list of peer providers to choose from.</p>
+<p>Let's look at two peer providers as an example:</p>
+<h2><a class="header" href="#1-the-k8s-peer-provider" id="1-the-k8s-peer-provider">1. The K8s Peer Provider</a></h2>
+<pre><code class="language-yaml">peer_provider:
+  kind: K8s
+  selector:
+    c19: getting-started
+  namespace: default
+</code></pre>
+<p>The K8s peer provider targets <code>Kubernetes</code> and will query for pod endpoints using a label selector. You can configure the K8s peer provider to query 
+across all namespaces or a single one.</p>
+<h2><a class="header" href="#2-the-static-peer-provider" id="2-the-static-peer-provider">2. The Static Peer Provider</a></h2>
+<pre><code class="language-yaml">peer_provider:
+  kind: Static
+  peers:
+    - 192.168.1.2
+    - 192.168.86.204
+</code></pre>
+<p>The static peer provider allows setting a fixed, predefined list of peers. You can configure it to include as many peers as you wish and can also 
+include a different port for each peer. If no port is specified it will fall back to the <code>target_port</code> of the connection layer or the <code>port</code> configuration of 
+the connection layer.</p>
+<h1><a class="header" href="#configuration-1" id="configuration-1">Configuration</a></h1>
+<p>The C19 agent is configured using a YAML file. When running the <code>c19</code> binary you specify the configuration 
+file using the <code>--config</code> flag.</p>
+<p>The configuration file is divided into 3 main parts, one for every layer: Agent, State and Connection.
+Since the configuration is specific to the layer chosen, your configuration will vary depending on the layers 
+you choose.</p>
+<p>For example, the following configuration uses the <code>Default</code> Agent, State and Connection layers.
+For the Connection layer the <code>k8s</code> peer provider is chosen and for the <code>Default</code> state the file 
+data seeder is being used.</p>
+<pre><code class="language-yaml">version: 0.1
+spec:
+  agent:
+    kind: Default
+    port: 3097
+  state:
+    kind: Default
+    ttl: null
+    purge_interval: 60000
+    data_seeder: 
+      kind: File
+      filename: data.json
+  connection:
+    kind: Default
+    port: 4097
+    push_interval: 1000
+    pull_interval: 60000
+    r0: 3
+    timeout: 1000
+    peer_provider:
+      kind: K8s
+      selector:
+        c19: getting-started
+      namespace: default
+</code></pre>
+<p>Please refer to <a href="appendix-i.html">Appendix I</a> for specific details on each available layer.</p>
+<h1><a class="header" href="#seeding-data" id="seeding-data">Seeding Data</a></h1>
+<p>The C19 Protocol can be considered as a distributed cache layer. As with all other cache implementations, one must consider a case where they would have to seed 
+data into the cache once it first loads.</p>
+<p>When a C19 agent first launches it connects to other C19 agents and exchanges data with them. This means there's no need for seeding data as it will be in par with 
+other C19 agents soon after it loads. </p>
+<p>We can also look back at the <a href="use-case-media-server.html">Media Service</a> use case and see that in this case, even with a fresh new cluster we do not need to seed data as the data is being set 
+with every new publisher who starts publishing to the cluster.</p>
+<p>But there are still cases where you'd want to seed external data into your C19 cluster and for that we can consider two approaches:</p>
+<h2><a class="header" href="#two-approaches-to-seeding-data" id="two-approaches-to-seeding-data">Two Approaches to Seeding Data</a></h2>
+<h3><a class="header" href="#1-using-a-data-seeder" id="1-using-a-data-seeder">1. Using a Data Seeder</a></h3>
+<p>This is a simple and easy way to seed data into your C19 cluster. When a C19 agent first loads it will use a <code>Data Seeder</code> to load data 
+to its <code>State</code> and will then continue as normal with exchanging this data with other C19 agents.</p>
+<p>Please refer to <a href="data-seeders.html">Architecture / Data Seeders</a> for a quick example of the <code>File</code> data seeder and to <a href="appendix-i-data-seeders.html">Appendix I / Available Data Seeders</a> for 
+a list of available data seeders.</p>
+<h3><a class="header" href="#2-on-demand-data-seeding" id="2-on-demand-data-seeding">2. On-Demand Data Seeding</a></h3>
+<p>Consider how <code>ARP</code> (Address Resolution Protocol) works: It holds a table of MAC to IP tuple and when a higher application level asks 
+the ARP service for the MAC of a specific IP address it will first check its table and if it doesn't have this information it will send a request across 
+the wire &quot;who has IP address...&quot; and will then cache the response to its table. </p>
+<p>We can do the same with C19. Your application can set missing values to your local 
+C19 agent on-demand. If a value is missing your application will retrieve it in another way and will set the response to the local C19 agent which will then spread this 
+information across other C19 agents. Since all C19 agents share the same state, your data will soon be available across your cluster, based on your demand.</p>
+<h1><a class="header" href="#appendix-i" id="appendix-i">Appendix I</a></h1>
+<p>This appendix lists available components and layers already implemented for the C19 agent.</p>
+<p>You may browse through the lists to explore the ones that suites your needs.</p>
+<h1><a class="header" href="#available-states" id="available-states">Available States</a></h1>
+<p>This section lists available states already implemented for the C19 protocol.
+Make sure to check this list often as we expect it to grow with time.</p>
+<table><thead><tr><th>State</th><th>Description</th><th>Supported Since Version</th></tr></thead><tbody>
+<tr><td><a href="appendix-i-default-state.html">The Default State</a></td><td>A Key/Value store with support for TTL</td><td>0.1.0</td></tr>
+</tbody></table>
+<h1><a class="header" href="#the-default-state-1" id="the-default-state-1">The Default State</a></h1>
+<p>The <code>Default</code> state layer implementation offers a key/value store where the key is a string and the value is anything JSON, including a JSON object.</p>
+<p>When setting values to the store, the state expects a JSON object with a <code>value</code> and other optional fields (see below). It will return a JSON object with 
+the value and all optional fields when retrieving values from the store.</p>
+<p>This state also supports <a href="data-seeders.html">Data Seeders</a>.</p>
+<h2><a class="header" href="#configuration-2" id="configuration-2">Configuration</a></h2>
+<pre><code class="language-yaml">state:
+  kind: Default
+  ttl: null
+  purge_interval: 60000
+  data_seeder: 
+    kind: File
+    filename: data.json
+</code></pre>
+<p><code>ttl</code> - The default TTL (in milliseconds) to use for new keys that are not explicitly set with their own TTL. Default value is <code>null</code> (no default ttl).</p>
+<p><code>purge_interval</code> - The Default state will always filter out expired keys, but will still hold them in memory until purged. This setting controls the 
+interval (in milliseconds) in which expired keys will be purged. Default value is 1 minute.</p>
+<p><code>data_seeder</code> - The <code>Data Seeder</code> to use when the state is first loaded. Default value is <code>null</code> (no default data seeder).</p>
+<h2><a class="header" href="#behavior" id="behavior">Behavior</a></h2>
+<p>The state holds a map of key to value where the value is anything JSON.
+It offers an optional TTL per key and will expire those keys at a certain interval. </p>
+<h3><a class="header" href="#setting-values-1" id="setting-values-1">Setting Values</a></h3>
+<p>The <code>State</code> expects a JSON object in the following form:</p>
+<pre><code class="language-json">{
+  &quot;key&quot;: {
+    &quot;value&quot;: &lt;any valid json value&gt;,
+    &quot;ttl&quot;: &lt;optional. ttl in milliseconds&gt;,
+    &quot;ts&quot;: &lt;optional. manually setting the timestamp (in milliseconds since epoch) of this key
+  },
+  ...
+}
+</code></pre>
+<h3><a class="header" href="#getting-values-1" id="getting-values-1">Getting Values</a></h3>
+<p>The state will return a JSON as mentioned above.</p>
+<h3><a class="header" href="#ttl-and-purging-keys" id="ttl-and-purging-keys">TTL and Purging Keys</a></h3>
+<p>The state will not return expired keys and will purge them every <code>purge_interval</code> milliseconds.</p>
+<h3><a class="header" href="#data-seeders-1" id="data-seeders-1">Data Seeders</a></h3>
+<p>The state supports data seeders and will load a data seeder as the first step of initialization.</p>
+<h1><a class="header" href="#available-agents" id="available-agents">Available Agents</a></h1>
+<p>This section lists available agents already implemented for the C19 protocol.
+Make sure to check this list often as we expect it to grow with time.</p>
+<table><thead><tr><th>State</th><th>Description</th><th>Supported Since Version</th></tr></thead><tbody>
+<tr><td><a href="appendix-i-default-agent.html">The Default Agent</a></td><td>A general purpose HTTP agent</td><td>0.1.0</td></tr>
+</tbody></table>
+<h1><a class="header" href="#the-default-agent-1" id="the-default-agent-1">The Default Agent</a></h1>
+<p>The <code>Default</code> agent layer allows an application to get and set values using HTTP requests.
+It does not assume anything about the <code>State</code> being used, hence the body of the request can be anything.</p>
+<h2><a class="header" href="#configuration-3" id="configuration-3">Configuration</a></h2>
+<pre><code class="language-yaml">agent:
+  kind: Default
+  port: 3097
+</code></pre>
+<p>The only relevant configuration option for the <code>Default</code> agent layer is the port to bind to when accepting connections from an application.
+The default port value is <code>3097</code>.</p>
+<h2><a class="header" href="#setting-values-2" id="setting-values-2">Setting Values</a></h2>
+<p>The agent exposes a <code>PUT</code> request endpoint which accepts a body of any type that will be passed to the state.
+As mentioned, the <code>Default</code> agent does not assume anything about the <code>State</code> being used. This means that the body of the 
+message can represent any type. When using the <code>Defaul</code> state layer, the body of the message is expected to be a JSON object 
+representing the value being set:</p>
+<pre><code class="language-shell">curl -XPUT localhost:3097/ -d '{&quot;cat&quot;: {&quot;value&quot;:&quot;garfield&quot;}}'
+</code></pre>
+<h2><a class="header" href="#getting-values-2" id="getting-values-2">Getting Values</a></h2>
+<p>The agent exposes a <code>GET</code> request endpoint where the path represents the <code>key</code> to be retrieved from the state. The response is dependent on the <code>State</code> 
+being used. In the following example we are using the <code>Default</code> state layer which outputs a JSON object with the value 
+and extra details:</p>
+<pre><code class="language-shell">$ curl localhost:3097/cat
+{&quot;value&quot;:&quot;garfield&quot;,&quot;ts&quot;:1603548753122,&quot;ttl&quot;:null}
+</code></pre>
+<h1><a class="header" href="#available-connections" id="available-connections">Available Connections</a></h1>
+<p>This section lists available connection layers already implemented for the C19 protocol.
+Make sure to check this list often as we expect it to grow with time.</p>
+<table><thead><tr><th>State</th><th>Description</th><th>Supported Since Version</th></tr></thead><tbody>
+<tr><td><a href="appendix-i-default-connection.html">The Default Connection</a></td><td>A general purpose connection layer</td><td>0.1.0</td></tr>
+</tbody></table>
+<h1><a class="header" href="#the-default-connection-1" id="the-default-connection-1">The Default Connection</a></h1>
+<p>The <code>Default</code> connection layer implementation picks up random set of peers on each specified interval and uses HTTP calls to exchange its own state with 
+the peer's state.</p>
+<h2><a class="header" href="#configuration-and-behavior-1" id="configuration-and-behavior-1">Configuration and Behavior</a></h2>
+<pre><code class="language-yaml">connection:
+  kind: Default
+  port: 4097
+  push_interval: 1000
+  pull_interval: 60000
+  r0: 3
+  timeout: 1000
+  peer_provider:
+    kind: K8s
+    selector:
+      c19: getting-started
+    namespace: default
+</code></pre>
+<p><code>port</code> - The port to bind to and accept connections from other peers.</p>
+<p><code>push_interval</code> - The rate (in milliseconds) in which the connection layer will connect and push its state to other peers. To optimize state exchanges, the connection layer will only send the changes since 
+last publish time. See the <code>pull_interval</code> for when the full state will be exchanged with other peers. The lower this number is, the faster the reaction 
+to new state changes, but at the expense of CPU time. Depending on the size of your data, preparing the state changes to be published might be time consuming.</p>
+<p><code>pull_interval</code> - The rate (in milliseconds) in which the connection layer will connect and pull the state of other peers. It will specify the version of its own state and only if the versions do 
+no match then the other peer will respond with its full state.</p>
+<p><code>r0</code> - The number of peers to connect to on each <code>publish_interval</code>. The peers are being selected randomly. The bigger this number is, the faster the data will propagate across the system, but at the expense of time 
+it takes for each exchange. The implementation tries to parallelize the connections to other peers, but it still has its limits. If the rate of changes to the state is high and you 
+choose a big <code>r0</code>, it comes at the expense of publishing new values to the system.</p>
+<p><code>timeout</code> - The connection timeout (in milliseconds). If this connection layer cannot connect to other peer within this timeout then the connection will be aborted.</p>
+<p><code>peer_provider</code> - The connection uses a peer provider to get the full list of available peers to connect to. It will then choose a random set of peers based on the <code>r0</code> configuration value. The peer provider 
+can be anything on the available peer providers list. Please refer to the <a href="appendix-i-peer-providers.html">Appendix I / Available Peer Providers</a> to browse through. In the configuration example above, we are using the <code>K8s</code> peer provider. This 
+peer provider targets Kubernetes and allows you to choose the label selector of the pods that are part of your C19 group.</p>
+<h2><a class="header" href="#exchanging-the-state-1" id="exchanging-the-state-1">Exchanging the State</a></h2>
+<p>The <code>Default</code> connection layer selects a random set of peers to connect to and exchange the state with.</p>
+<p>It runs two threads: push and pull.
+When pushing, only the changes from last publish time are being sent to other peers.</p>
+<p>When pulling, the connection layer will specify its own state version and only if it does not match the peer's state version, will the full state be returned by the peer.</p>
+<p>The state version is calculated from the keys and timestamps for each keys.</p>
+<h1><a class="header" href="#available-peer-providers" id="available-peer-providers">Available Peer Providers</a></h1>
+<p>This section lists available peer providers already implemented for the C19 protocol.
+Make sure to check this list often as we expect it to grow with time.</p>
+<table><thead><tr><th>State</th><th>Description</th><th>Supported Since Version</th></tr></thead><tbody>
+<tr><td><a href="appendix-i-static-peer-provider.html">Static Peer Provider</a></td><td>Allowing to manually configure a list of C19 peers</td><td>0.1.0</td></tr>
+<tr><td><a href="appendix-i-k8s-peer-provider.html">K8s</a></td><td>Kubernetes peer provider with a pod label selector</td><td>0.1.0</td></tr>
+</tbody></table>
+<h1><a class="header" href="#static-peer-provider" id="static-peer-provider">Static Peer Provider</a></h1>
+<p>The static peer provider allows to manually specify a list of available C19 peers.</p>
+<h2><a class="header" href="#configuration-4" id="configuration-4">Configuration</a></h2>
+<pre><code class="language-yaml">peer_provider:
+  kind: Static
+  peers:
+    - 192.168.1.1
+    - 192.168.1.2:3000
+</code></pre>
+<p><code>peers</code> - A list of available peers in the form of IP or IP:Port.</p>
+<p>If no port is specified, it is up to the connection layer to determine what port to use when connecting to peers.
+The <code>Default</code> connection layer, as an example, will use its <code>target_port</code> or <code>port</code> configuration values.</p>
+<h2><a class="header" href="#behavior-1" id="behavior-1">Behavior</a></h2>
+<p>The static peer provider will simply return the fixed peer list specified in the configuration.</p>
+<h1><a class="header" href="#k8s-peer-provider-1" id="k8s-peer-provider-1">K8s Peer Provider</a></h1>
+<p>The K8s peer provider targets Kubernetes and will query for pod endpoints using a specified pod label selector.</p>
+<h2><a class="header" href="#configuration-5" id="configuration-5">Configuration</a></h2>
+<pre><code class="language-yaml">peer_provider:
+  kind: K8s
+  selector:
+    c19: getting-started
+  namespace: default
+</code></pre>
+<p><code>selector</code> - The pod selector to use when querying Kubernetes API server for a list of pod's endpoints.</p>
+<p><code>namespace</code> - The namespace to use. Defaults to <code>default</code> namespace. Accepts <code>:all</code> (mind the <code>:</code>) to allow querying across all namespaces.</p>
+<p>In the configuration example above, one would specify <code>c19: getting-started</code> on their pods label.</p>
+<h2><a class="header" href="#behavior-2" id="behavior-2">Behavior</a></h2>
+<p>The K8s peer provider uses the specified selector and namespace to watch the matching pod list for changes. It holds a most up-to-date list of the available pods and 
+will return that list whenever queried for by a connection layer.</p>
+<h1><a class="header" href="#available-data-seeders" id="available-data-seeders">Available Data Seeders</a></h1>
+<p>This section lists available data seeders already implemented for the C19 protocol.
+Make sure to check this list often as we expect it to grow with time.</p>
+<table><thead><tr><th>State</th><th>Description</th><th>Supported Since Version</th></tr></thead><tbody>
+<tr><td><a href="appendix-i-file-data-seeder.html">File Data Seeder</a></td><td>Loads data from a file</td><td>0.1.0</td></tr>
+</tbody></table>
+<h1><a class="header" href="#file-data-seeder-1" id="file-data-seeder-1">File Data Seeder</a></h1>
+<p>The File data seeder loads data from a file.</p>
+<h2><a class="header" href="#configuration-6" id="configuration-6">Configuration</a></h2>
+<pre><code class="language-yaml">data_seeder: 
+  kind: File
+  filename: data.json
+</code></pre>
+<p><code>filename</code> - The filename to load.</p>
+<h2><a class="header" href="#behavior-3" id="behavior-3">Behavior</a></h2>
+<p>When a <code>State</code> layer calls this data seeder it will look for the specified file and will load the data into the state. It is up to the user 
+to make sure the file is formatted as expected by the <code>State</code> layer.</p>
+<h1><a class="header" href="#roadmap" id="roadmap">Roadmap</a></h1>
+<p>Different factors may affect the roadmap of the project. While we do our best to follow the roadmap we set, there could be changes.</p>
+<p>Make sure to revisit this page from time to time to see what we are up to.</p>
+<h2><a class="header" href="#implementing-different-layers" id="implementing-different-layers">Implementing Different Layers</a></h2>
+<p>The power of the C19 protocol is with its layers. Different layer configurations and combinations determine its behavior and the use cases it serves.
+The more layer implementations, the more use cases it will answer.</p>
+<h3><a class="header" href="#a-few-ideas" id="a-few-ideas">A Few Ideas</a></h3>
+<p><code>Git State</code> - A state layer that acts as a git repository. Combined with a matching connection layer, it will act as a distributed git repository. The State will act as a 
+key/value store based on Git and will allow versioning and conflict resolution as Git does.</p>
+<p><code>The Query Paradigm</code> - With the current layer implementations, the governing paradigm is one that's having every C19 agent hold a copy of the state. 
+The <code>Query</code> paradigm will allow an application to query its local C19 agent which will, in turn, send the query to other C19 agents until an answer is found.
+This paradigm allows holding a very large data set and optimizing where the data is being propagated to based on demand. When an application queries its local C19 
+agent for data and it does not currently hold that data, it will query other C19 agents and will cache the results.</p>
+<p><code>Redis-Backed State</code> - Having a State layer where the backend is Redis. The Agent will be used as a HTTP layer for passing commands to Redis. This can be implemented for 
+different kinds of DBs.</p>
+<h2><a class="header" href="#adding-capabilities-to-the-default-agent" id="adding-capabilities-to-the-default-agent">Adding Capabilities to the <code>Default</code> Agent</a></h2>
+<p>The <code>Default</code> agent exposes two endpoints for setting and getting values from the state. Adding APIs that will allow an application to register for state changes would 
+allow it to be notified when a key has changed.</p>
+<h2><a class="header" href="#adding-capabilities-to-layer-integrations" id="adding-capabilities-to-layer-integrations">Adding Capabilities to Layer Integrations</a></h2>
+<p>Enriching the internal APIs between the layers would allow extending the different kinds of layers that can be implemented.</p>
+<h2><a class="header" href="#metrics" id="metrics">Metrics</a></h2>
+<p>Implementing metrics API for all layers that allows layers to expose their internal stats. </p>
+<p>Implementing different exporters for metrics like: Prometheus and Graphite.</p>
+<h1><a class="header" href="#license" id="license">License</a></h1>
+<p>Copyright (c) 2020, Chen Fisher.
+All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+<ol>
+<li>
+<p>Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.</p>
+</li>
+<li>
+<p>Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.</p>
+</li>
+<li>
+<p>Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software
+without specific prior written permission.</p>
+</li>
+</ol>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
