@@ -49,5 +49,3 @@
     - [File Data Seeder](appendix-i-file-data-seeder.md)
 - [Roadmap](roadmap.md)
 - [License](license.md)
-
-[FIXME: all figures / images]
