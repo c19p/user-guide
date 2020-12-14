@@ -219,7 +219,7 @@ be consumed while slightly stale. If this is the case, then why loading your sys
 Each solution would require its own dedicated system.</p>
 <p>C19 offers one, generic way, of solving many issues altogether. In the cases described above, a c19 group can share the state across the system while decoupled 
 from the load of the system.</p>
-<h1><a class="header" href="#use-cases" id="use-cases">Use cases</a></h1>
+<h1><a class="header" href="#use-cases" id="use-cases">Use Cases</a></h1>
 <p>There are many use cases where the C19 protocol could be a good fit. C19 is a general-purpose solution for sharing state in a distributed system.
 In this chapter we show a few simple use-cases to help spark up your imagination of the possibilities.</p>
 <p>As you will learn throughout this book, C19 allows for different configuration and <a href="deployment-strategies.html">Deployment Strategies</a>. You will learn about the different <a href="architecture.html">layers</a> and their 
@@ -428,7 +428,7 @@ spec:
         - containerPort: 80
       - name: c19
         image: c19p/c19:0.1.0
-        args: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+        args: [&quot;/usr/local/bin/c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
         ports:
           - name: agent
             containerPort: 3097
@@ -510,7 +510,7 @@ spec:
         - containerPort: 80
       - name: c19
         image: c19p/c19:0.1.0
-        args: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+        args: [&quot;/usr/local/bin/c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
         ports:
           - name: agent
             containerPort: 3097
@@ -580,7 +580,7 @@ spec:
         - containerPort: 80
       - name: c19
         image: c19p/c19:0.1.0
-        args: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+        args: [&quot;/usr/local/bin/c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
         ports:
           - name: agent
             containerPort: 3097
@@ -800,7 +800,7 @@ spec:
 <pre><code class="language-yaml">version: &quot;3.8&quot;
 x-c19: &amp;c19
   image: c19p/c19:0.1.0
-  command: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+  command: [&quot;/usr/local/bin/c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
   environment:
     RUST_LOG: &quot;c19=info&quot;
   deploy:
@@ -854,9 +854,9 @@ and the port mapping.</p>
 <pre><code class="language-shell">$ docker-compose ps
       Name                    Command               State                       Ports                     
 ----------------------------------------------------------------------------------------------------------
-resources_c191_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3097-&gt;3097/tcp, 0.0.0.0:4097-&gt;4097/tcp
-resources_c192_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3098-&gt;3097/tcp, 0.0.0.0:4098-&gt;4097/tcp
-resources_c193_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3099-&gt;3097/tcp, 0.0.0.0:4099-&gt;4097/tcp
+resources_c191_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3097-&gt;3097/tcp, 0.0.0.0:4097-&gt;4097/tcp
+resources_c192_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3098-&gt;3097/tcp, 0.0.0.0:4098-&gt;4097/tcp
+resources_c193_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3099-&gt;3097/tcp, 0.0.0.0:4099-&gt;4097/tcp
 </code></pre>
 <p>We have three C19 agents as expected, exposing ports to our local host for our inspection.</p>
 <p>You can now follow up with <a href="getting-started-test-deployment.html">Testing the Deployment</a> chapter to play around with your deployment.</p>

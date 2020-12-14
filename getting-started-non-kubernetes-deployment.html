@@ -225,7 +225,7 @@ spec:
 <pre><code class="language-yaml">version: &quot;3.8&quot;
 x-c19: &amp;c19
   image: c19p/c19:0.1.0
-  command: [&quot;./c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
+  command: [&quot;/usr/local/bin/c19&quot;, &quot;--config&quot;, &quot;/etc/c19/config.yaml&quot;]
   environment:
     RUST_LOG: &quot;c19=info&quot;
   deploy:
@@ -279,9 +279,9 @@ and the port mapping.</p>
 <pre><code class="language-shell">$ docker-compose ps
       Name                    Command               State                       Ports                     
 ----------------------------------------------------------------------------------------------------------
-resources_c191_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3097-&gt;3097/tcp, 0.0.0.0:4097-&gt;4097/tcp
-resources_c192_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3098-&gt;3097/tcp, 0.0.0.0:4098-&gt;4097/tcp
-resources_c193_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3099-&gt;3097/tcp, 0.0.0.0:4099-&gt;4097/tcp
+resources_c191_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3097-&gt;3097/tcp, 0.0.0.0:4097-&gt;4097/tcp
+resources_c192_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3098-&gt;3097/tcp, 0.0.0.0:4098-&gt;4097/tcp
+resources_c193_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3099-&gt;3097/tcp, 0.0.0.0:4099-&gt;4097/tcp
 </code></pre>
 <p>We have three C19 agents as expected, exposing ports to our local host for our inspection.</p>
 <p>You can now follow up with <a href="getting-started-test-deployment.html">Testing the Deployment</a> chapter to play around with your deployment.</p>
