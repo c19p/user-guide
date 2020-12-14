@@ -79,7 +79,7 @@ We will configure our docker-compose to use a network which will allow us to set
 version: "3.8"
 x-c19: &c19
   image: c19p/c19:0.1.0
-  command: ["./c19", "--config", "/etc/c19/config.yaml"]
+  command: ["/usr/local/bin/c19", "--config", "/etc/c19/config.yaml"]
   environment:
     RUST_LOG: "c19=info"
   deploy:
@@ -141,9 +141,9 @@ Let's inspect our deployment:
 $ docker-compose ps
       Name                    Command               State                       Ports                     
 ----------------------------------------------------------------------------------------------------------
-resources_c191_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3097->3097/tcp, 0.0.0.0:4097->4097/tcp
-resources_c192_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3098->3097/tcp, 0.0.0.0:4098->4097/tcp
-resources_c193_1   ./c19 --config /etc/c19/co ...   Up      0.0.0.0:3099->3097/tcp, 0.0.0.0:4099->4097/tcp
+resources_c191_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3097->3097/tcp, 0.0.0.0:4097->4097/tcp
+resources_c192_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3098->3097/tcp, 0.0.0.0:4098->4097/tcp
+resources_c193_1   /usr/local/bin/c19 --config /etc/c19/co ...   Up      0.0.0.0:3099->3097/tcp, 0.0.0.0:4099->4097/tcp
 ```
 
 We have three C19 agents as expected, exposing ports to our local host for our inspection.

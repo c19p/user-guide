@@ -69,7 +69,7 @@ spec:
         - containerPort: 80
       - name: c19
         image: c19p/c19:0.1.0
-        args: ["./c19", "--config", "/etc/c19/config.yaml"]
+        args: ["/usr/local/bin/c19", "--config", "/etc/c19/config.yaml"]
         ports:
           - name: agent
             containerPort: 3097

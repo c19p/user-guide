@@ -1,7 +1,7 @@
 version: "3.8"
 x-c19: &c19
   image: c19:0.1.0
-  command: ["./c19", "--config", "/etc/c19/config.yaml"]
+  command: ["/usr/local/bin/c19", "--config", "/etc/c19/config.yaml"]
   environment:
     RUST_LOG: "c19=info"
   deploy:
